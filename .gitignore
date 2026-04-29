@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Customer Churn Thesis — .gitignore
+# Public repo: code + results visible | thesis, papers, presentation excluded
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Excluded project folders ─────────────────────────────────────────────────
+thesis/
+papers/
+presentation/
+
+# ── Processed / generated data (viewers should derive these via notebooks) ───
+data/processed/
+
+# ── Jupyter Notebook artifacts ───────────────────────────────────────────────
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Python cache ─────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ── OS noise ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE / editor ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak

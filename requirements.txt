@@ -1,0 +1,34 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Customer Churn Prediction in Banking — M.Tech Thesis
+# IIT Jodhpur | Samrat Chowdhury | M25AI1077
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Core data manipulation
+pandas>=1.5.0
+numpy>=1.23.0
+
+# Visualisation
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Machine learning — base
+scikit-learn>=1.2.0
+
+# Gradient boosting
+xgboost>=1.7.0
+lightgbm>=3.3.0
+
+# Class imbalance (SMOTE)
+imbalanced-learn>=0.10.0
+
+# Explainability (SHAP)
+shap>=0.41.0
+
+# Jupyter environment
+jupyter>=1.0.0
+ipykernel>=6.0.0
+nbformat>=5.7.0
+
+# Utilities
+scipy>=1.9.0
+joblib>=1.2.0
