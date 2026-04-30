@@ -142,7 +142,7 @@ Customer_Churn_Thesis/
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/Customer_Churn_Thesis.git
+git clone https://github.com/schowdhury34/bank-customer-churn-prediction
 cd Customer_Churn_Thesis
 
 # Install dependencies
