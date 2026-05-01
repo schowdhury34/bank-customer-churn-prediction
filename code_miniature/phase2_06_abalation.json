@@ -1,0 +1,40 @@
+{
+  "notebook_id": "06_ablation_hybrid_threshold_colab_phase2",
+  "position": "7",
+  "purpose": "To conduct an ablation study validating the impact of SMOTE and feature engineering, and to build a final Stacking Classifier ensemble.\nThe notebook explores how different data treatments affect performance and tests varying probability thresholds on the stacked model to fine-tune Recall.",
+  "inputs": [
+    "../data/raw/Churn_Modelling.csv",
+    "../data/processed/Churn_Data_Augmented_Processed.csv"
+  ],
+  "key_steps": [
+    "Conduct an ablation study by training a baseline Logistic Regression model on four distinct data states: Raw Data, Raw + SMOTE, Feature Engineering, and Feature + SMOTE.",
+    "Evaluate and export the results of the ablation study to quantify the value added by each data processing step.",
+    "Build a Stacking Classifier using Random Forest, XGBoost, and LightGBM as base estimators, and Logistic Regression as the final meta-estimator.",
+    "Train and evaluate the Stacking Classifier, generating a confusion matrix.",
+    "Iterate through probability thresholds (0.1 to 0.5) to plot a Threshold vs. Recall curve for the stacking model."
+  ],
+  "output_files": [
+    "../results/tables/06_ablation_hybrid_threshold_colab_phase2_ablation_results.csv",
+    "../results/figures/06_ablation_hybrid_threshold_colab_phase2_stacking_confusion_matrix.png",
+    "../results/figures/06_ablation_hybrid_threshold_colab_phase2_threshold_recall_curve.png"
+  ],
+  "images": {
+    "06_ablation_hybrid_threshold_colab_phase2_stacking_confusion_matrix.png": "A confusion matrix for the final Stacking Classifier, showing its performance on the test set.",
+    "06_ablation_hybrid_threshold_colab_phase2_threshold_recall_curve.png": "A line graph illustrating the inverse relationship between the decision threshold and the model's Recall score, demonstrating how lower thresholds capture more churners."
+  },
+  "tables": {
+    "06_ablation_hybrid_threshold_colab_phase2_ablation_results": {
+      "Raw Data": "Recall: 0.491, Precision: 0.781, F1: 0.603, AUC: 0.863",
+      "Raw + SMOTE": "Recall: 0.658, Precision: 0.559, F1: 0.605, AUC: 0.846",
+      "Feature Engineering": "Recall: 0.471, Precision: 0.747, F1: 0.578, AUC: 0.858",
+      "Feature + SMOTE": "Recall: 0.633, Precision: 0.589, F1: 0.610, AUC: 0.851"
+    }
+  },
+  "key_findings": [
+    "The ablation study conclusively proves that SMOTE is the primary driver for improving Recall, jumping from ~49.1% (Raw) to ~65.8% (Raw + SMOTE).",
+    "Feature engineering alone actually slightly depressed Recall compared to Raw Data, but improved the structural learning for complex models in earlier phases.",
+    "The Threshold-Recall curve visualizes the trade-off space, confirming the findings from Phase 2's cost-sensitive notebook that lowering the threshold is necessary to maximize churn capture."
+  ],
+  "next_notebook": "None (End of pipeline)",
+  "notes": "This final notebook nicely ties together the methodological choices made throughout the project. The ablation study scientifically validates the necessity of the SMOTE step introduced in Phase 1A."
+}

@@ -1,0 +1,40 @@
+{
+  "notebook_id": "Phase1_Comparison",
+  "position": "1",
+  "purpose": "To establish baseline performance for customer churn prediction by training and evaluating five standard machine learning classifiers.\nThe data is preprocessed, balanced using SMOTE, and models are compared to set a benchmark.\nThe primary focus metric for comparison is Recall.",
+  "inputs": [
+    "../data/raw/Churn_Modelling.csv"
+  ],
+  "key_steps": [
+    "Load raw data and drop irrelevant identifiers (RowNumber, CustomerId, Surname).",
+    "Encode categorical features using LabelEncoder (Gender) and get_dummies (Geography).",
+    "Split the dataset into training and testing sets.",
+    "Apply SMOTE to the training data to handle class imbalance.",
+    "Scale features using StandardScaler.",
+    "Train and evaluate Logistic Regression, Decision Tree, Random Forest, XGBoost, and LightGBM models.",
+    "Export performance metrics and visualizations."
+  ],
+  "output_files": [
+    "../results/tables/Phase1_Comparison_results.csv",
+    "../results/figures/Phase1_Comparison_model_recall_comparison.png"
+  ],
+  "images": {
+    "Phase1_Comparison_model_recall_comparison.png": "A bar chart visualizing and comparing the Recall scores across the five baseline models, showing Logistic Regression at the top."
+  },
+  "tables": {
+    "Phase1_Comparison_results": {
+      "Logistic Regression": "Recall: 0.698, F1-Score: 0.500, Precision: 0.389, Accuracy: 0.715, ROC-AUC: 0.777",
+      "Random Forest": "Recall: 0.609, F1-Score: 0.611, Precision: 0.612, Accuracy: 0.842, ROC-AUC: 0.847",
+      "XGBoost": "Recall: 0.563, F1-Score: 0.607, Precision: 0.658, Accuracy: 0.852, ROC-AUC: 0.838",
+      "LightGBM": "Recall: 0.560, F1-Score: 0.615, Precision: 0.681, Accuracy: 0.857, ROC-AUC: 0.857",
+      "Decision Tree": "Recall: 0.514, F1-Score: 0.491, Precision: 0.470, Accuracy: 0.785, ROC-AUC: 0.677"
+    }
+  },
+  "key_findings": [
+    "Logistic Regression achieved the highest Recall (~69.8%), making it the best baseline for capturing actual churners.",
+    "Ensemble models (LightGBM, Random Forest, XGBoost) achieved higher overall Accuracy and ROC-AUC but struggled to match the linear model's Recall.",
+    "Decision Tree was the weakest performer overall, exhibiting the lowest Recall (~51.4%) and ROC-AUC."
+  ],
+  "next_notebook": "Pending (Will be updated as subsequent notebooks are provided)",
+  "notes": "SMOTE was correctly applied only to the training set to prevent data leakage. The leaderboard is explicitly sorted by Recall, indicating this is the primary optimization metric for the project."
+}

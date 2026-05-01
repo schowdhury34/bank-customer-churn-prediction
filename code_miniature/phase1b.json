@@ -1,0 +1,42 @@
+{
+  "notebook_id": "02_Model_Benchmarking_Phase1B",
+  "position": "3",
+  "purpose": "To benchmark the five machine learning models using the feature-engineered and SMOTE-augmented dataset from Phase 1A.\nThe goal is to identify the best-performing algorithm based on Recall to serve as the foundation for future tuning.",
+  "inputs": [
+    "../data/processed/train_augmented.csv",
+    "../data/processed/test_original.csv"
+  ],
+  "key_steps": [
+    "Load the processed and augmented training/testing datasets.",
+    "Scale the features using StandardScaler.",
+    "Train five classification models: Logistic Regression, Decision Tree, Random Forest, XGBoost, and LightGBM.",
+    "Evaluate model predictions on the test set using Recall, ROC-AUC, Accuracy, Precision, and F1-Score.",
+    "Generate a confusion matrix for the top-performing model (LightGBM).",
+    "Export the benchmarking results and visualizations."
+  ],
+  "output_files": [
+    "../results/tables/02_Model_Benchmarking_Phase1B_benchmark.csv",
+    "../results/figures/02_Model_Benchmarking_Phase1B_benchmark.png",
+    "../results/figures/02_Model_Benchmarking_Phase1B_Confusion_Matrix_LightGBM.png"
+  ],
+  "images": {
+    "02_Model_Benchmarking_Phase1B_benchmark.png": "A horizontal bar chart comparing the Recall scores of the five models, highlighting LightGBM as the top performer.",
+    "02_Model_Benchmarking_Phase1B_Confusion_Matrix_LightGBM.png": "A confusion matrix for the LightGBM model, illustrating the breakdown of true positives, true negatives, false positives, and false negatives on the test set."
+  },
+  "tables": {
+    "02_Model_Benchmarking_Phase1B_benchmark": {
+      "LightGBM": "Recall: 0.641, ROC-AUC: 0.849, Accuracy: 0.834, Precision: 0.583, F1-Score: 0.611",
+      "Decision Tree": "Recall: 0.602, ROC-AUC: 0.702, Accuracy: 0.762, Precision: 0.438, F1-Score: 0.507",
+      "Random Forest": "Recall: 0.597, ROC-AUC: 0.842, Accuracy: 0.830, Precision: 0.580, F1-Score: 0.588",
+      "Logistic Regression": "Recall: 0.585, ROC-AUC: 0.763, Accuracy: 0.754, Precision: 0.423, F1-Score: 0.491",
+      "XGBoost": "Recall: 0.580, ROC-AUC: 0.830, Accuracy: 0.839, Precision: 0.615, F1-Score: 0.597"
+    }
+  },
+  "key_findings": [
+    "LightGBM outperformed all other models on the engineered dataset, achieving the highest Recall (~64.1%) and the highest ROC-AUC (~84.9%).",
+    "With the addition of engineered features, tree-based models (especially LightGBM) overtook Logistic Regression, which had previously won the raw-data baseline comparison.",
+    "While XGBoost had strong overall accuracy, it fell to the bottom of the leaderboard for the primary target metric (Recall)."
+  ],
+  "next_notebook": "Pending",
+  "notes": "The pipeline is showing clear progression. The introduction of engineered features in Phase 1A successfully shifted the performance hierarchy, making LightGBM the obvious candidate for hyperparameter tuning in the next phases."
+}

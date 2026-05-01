@@ -1,0 +1,39 @@
+{
+  "notebook_id": "03_Hybrid_Model_Phase2",
+  "position": "4",
+  "purpose": "To develop and evaluate a hybrid ensemble model combining the top-performing algorithms (LightGBM and XGBoost) using a soft voting classifier.\nThe notebook aims to leverage the combined predictive power of both models and extracts feature importances to interpret the key drivers of churn.",
+  "inputs": [
+    "../data/processed/train_augmented.csv",
+    "../data/processed/test_original.csv"
+  ],
+  "key_steps": [
+    "Load the augmented training data and original testing data.",
+    "Initialize LightGBM and XGBoost classifiers.",
+    "Combine the classifiers into a VotingClassifier ensemble using 'soft' voting (averaging predicted probabilities).",
+    "Train the hybrid ensemble model on the augmented dataset and generate test set predictions.",
+    "Evaluate the hybrid model using standard classification metrics (Accuracy, Precision, Recall, F1, ROC-AUC) and generate a confusion matrix.",
+    "Extract and visualize the top 10 most important features using the LightGBM base estimator.",
+    "Export the performance metrics and generated visualizations."
+  ],
+  "output_files": [
+    "../results/tables/03_Hybrid_Model_Phase2_hybrid_results.csv",
+    "../results/figures/03_Hybrid_Model_Phase2_Hybrid_Model_Confusion_Matrix.png",
+    "../results/figures/03_Hybrid_Model_Phase2_Top_10_Important_Features.png"
+  ],
+  "images": {
+    "03_Hybrid_Model_Phase2_Hybrid_Model_Confusion_Matrix.png": "A confusion matrix for the Hybrid LightGBM-XGBoost model, detailing the true positives, true negatives, false positives, and false negatives.",
+    "03_Hybrid_Model_Phase2_Top_10_Important_Features.png": "A horizontal bar chart displaying the top 10 most important features driving the model's predictions, derived from the LightGBM component."
+  },
+  "tables": {
+    "03_Hybrid_Model_Phase2_hybrid_results": {
+      "Hybrid_LightGBM_XGBoost": "Accuracy: 0.837, Precision: 0.596, Recall: 0.617, F1: 0.606, ROC_AUC: 0.847"
+    }
+  },
+  "key_findings": [
+    "The hybrid model achieved a solid overall performance with an Accuracy of 83.7% and a ROC-AUC of 84.7%.",
+    "The Recall for the hybrid model was roughly 61.7%, which is slightly lower than the standalone LightGBM model from Phase 1B (64.1%).",
+    "Feature importance extraction was successfully implemented, providing interpretability for the ensemble model's decision-making process."
+  ],
+  "next_notebook": "Pending",
+  "notes": "While the soft voting ensemble is robust, the slight drop in Recall compared to the Phase 1B standalone LightGBM suggests that explicit hyperparameter tuning for both base models and the ensemble weights will be necessary to maximize the primary target metric."
+}

@@ -1,0 +1,39 @@
+{
+  "notebook_id": "05_Cost_Sensitive_Churn_Model_phase2",
+  "position": "6",
+  "purpose": "To align the model's predictions with actual business objectives by implementing a cost-sensitive learning approach.\nThe notebook calculates the optimal probability decision threshold to minimize the total financial impact of false negatives (missed churners) versus false positives (wasted retention efforts).",
+  "inputs": [
+    "../data/processed/train_augmented.csv",
+    "../data/processed/test_original.csv"
+  ],
+  "key_steps": [
+    "Load the augmented training data and original testing data.",
+    "Train a standard LightGBM classifier to generate prediction probabilities.",
+    "Define a business-specific cost matrix: $5000 penalty for a False Negative (customer churns) and $500 penalty for a False Positive (unnecessary retention discount).",
+    "Iterate through a range of probability thresholds (0.01 to 0.99) to calculate the total theoretical cost at each point.",
+    "Identify the optimal threshold that yields the lowest total financial cost.",
+    "Apply the optimized threshold to the test set predictions to recalculate standard metrics (Recall, Precision, Accuracy).",
+    "Export the results, confusion matrix, and cost optimization curve."
+  ],
+  "output_files": [
+    "../results/tables/05_Cost_Sensitive_Churn_Model_phase2_cost_sensitive_results.csv",
+    "../results/figures/05_Cost_Sensitive_Churn_Model_phase2_cost_optimization_curve.png",
+    "../results/figures/05_Cost_Sensitive_Churn_Model_phase2_Cost_Sensitive_Confusion_Matrix.png"
+  ],
+  "images": {
+    "05_Cost_Sensitive_Churn_Model_phase2_cost_optimization_curve.png": "A line graph plotting total business cost against varying decision thresholds. It highlights a distinct global minimum cost at a highly sensitive threshold of 0.06.",
+    "05_Cost_Sensitive_Churn_Model_phase2_Cost_Sensitive_Confusion_Matrix.png": "A confusion matrix based on the new 0.06 threshold. It shows a massive increase in true positives and false positives, reflecting the model's new aggressive stance on predicting churn."
+  },
+  "tables": {
+    "05_Cost_Sensitive_Churn_Model_phase2_cost_sensitive_results": {
+      "Optimized_LightGBM": "Optimal_Threshold: 0.060, Minimum_Cost: 730500, Recall: 0.948, F1: 0.420, Precision: 0.270, ROC-AUC: 0.844, Accuracy: 0.469"
+    }
+  },
+  "key_findings": [
+    "Because the cost of missing a churner ($5000) is ten times higher than wrongly targeting a loyal customer ($500), the optimal decision threshold dropped drastically from the default 0.50 down to 0.06.",
+    "Applying this business-aligned threshold skyrocketed the model's Recall to ~94.8%, ensuring almost no potential churners slip through the cracks.",
+    "This aggressive approach sacrifices overall Accuracy (dropping to ~46.9%) and Precision (dropping to ~27.0%) to achieve the lowest possible total monetary loss ($730,500)."
+  ],
+  "next_notebook": "Pending",
+  "notes": "This phase represents a crucial shift from optimizing purely statistical metrics (like ROC-AUC) to optimizing for direct ROI. The resulting model acts essentially as an ultra-sensitive radar, casting a very wide net."
+}

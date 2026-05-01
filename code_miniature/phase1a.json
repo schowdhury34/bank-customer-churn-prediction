@@ -1,0 +1,37 @@
+{
+  "notebook_id": "01_Data_Engineering_Phase1A",
+  "position": "1",
+  "purpose": "To perform initial data ingestion, exploratory data analysis (EDA), and feature engineering.\nThe notebook creates new derived features, analyzes correlations, and prepares the data for modeling by encoding categorical variables and balancing the training set with SMOTE.",
+  "inputs": [
+    "../data/raw/Churn_Modelling.csv"
+  ],
+  "key_steps": [
+    "Load raw data and drop irrelevant identifiers (RowNumber, CustomerId, Surname).",
+    "Engineer new features: Balance_Per_Product, Tenure_Age_Ratio, and Is_Senior.",
+    "Generate EDA visualizations including a correlation matrix, age distribution, and balance per product comparisons.",
+    "Encode categorical features (Geography, Gender) using one-hot encoding (get_dummies).",
+    "Split the dataset into training and testing sets (80/20 stratified).",
+    "Apply SMOTE exclusively to the training set to address class imbalance (minority class increased from 1630 to 6370).",
+    "Export the processed training and testing datasets for use in modeling phases."
+  ],
+  "output_files": [
+    "../data/processed/train_augmented.csv",
+    "../data/processed/test_original.csv",
+    "../results/figures/01_Data_Engineering_Phase1A_FeatureCorrelationMatrix.png",
+    "../results/figures/01_Data_Engineering_Phase1A_AgeDistribution_ChurnVSRetain.png",
+    "../results/figures/01_Data_Engineering_Phase1A_BalancePerProductVsChurnStatus.png"
+  ],
+  "images": {
+    "01_Data_Engineering_Phase1A_FeatureCorrelationMatrix.jpg": "A heatmap visualizing the Pearson correlation coefficients between numeric features to identify multicollinearity and linear relationships with the target.",
+    "01_Data_Engineering_Phase1A_AgeDistribution_ChurnVSRetain.png": "A distribution plot comparing the ages of customers who exited versus those who were retained.",
+    "01_Data_Engineering_Phase1A_BalancePerProductVsChurnStatus.png": "A boxplot showing the distribution of the newly engineered 'Balance_Per_Product' feature, split by churn status."
+  },
+  "tables": {},
+  "key_findings": [
+    "Three new features (Balance_Per_Product, Tenure_Age_Ratio, Is_Senior) were successfully integrated to capture more complex customer behaviors.",
+    "Visualizations suggest age is a distinguishing factor between churned and retained customers.",
+    "The dataset exhibited significant class imbalance (1630 churned vs 6370 retained in the training split), which was successfully neutralized using SMOTE."
+  ],
+  "next_notebook": "Phase1_Comparison",
+  "notes": "Based on the numbering ('01_'), this appears to be the true first step of the pipeline, preceding the baseline model comparison notebook you uploaded earlier. SMOTE is applied correctly (post-split) to prevent data leakage."
+}

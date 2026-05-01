@@ -1,0 +1,46 @@
+{
+  "notebook_id": "04_SHAP_Explainability_Phase2",
+  "position": "5",
+  "purpose": "To interpret the complex LightGBM model's predictions using SHAP (SHapley Additive exPlanations).\nThe notebook focuses on generating both global and local explanations to understand which features drive customer churn and how they impact individual predictions.",
+  "inputs": [
+    "../data/processed/train_augmented.csv",
+    "../data/processed/test_original.csv"
+  ],
+  "key_steps": [
+    "Load the augmented training data and original testing data.",
+    "Train a LightGBM classifier to serve as the baseline model for explainability.",
+    "Initialize a SHAP TreeExplainer and calculate SHAP values for the test dataset.",
+    "Generate global explainability plots (Summary dot plot, Feature Importance bar chart).",
+    "Generate a SHAP dependence plot to analyze the specific non-linear effect of 'Age'.",
+    "Generate local explainability waterfall plots to interpret predictions for specific customers (indices 0 and 5).",
+    "Export model performance metrics and raw SHAP values to CSV format."
+  ],
+  "output_files": [
+    "../results/tables/04_SHAP_Explainability_Phase2_SHAP_results.csv",
+    "../results/tables/04_SHAP_Explainability_Phase2_shap_values.csv",
+    "../results/figures/04_SHAP_Explainability_Phase2_shap_feature_importance.png",
+    "../results/figures/04_SHAP_Explainability_Phase2_shap_dependence_age.png",
+    "../results/figures/04_SHAP_Explainability_Phase2_shap_waterfall_index_0.png",
+    "../results/figures/04_SHAP_Explainability_Phase2_shap_waterfall_index_5.png",
+    "../results/figures/04_SHAP_Explainability_Phase2_shap_summary_plot.jpg"
+  ],
+  "images": {
+    "04_SHAP_Explainability_Phase2_shap_summary_plot.jpg": "A SHAP summary dot plot illustrating both feature importance and the directional impact of features (e.g., indicating that higher Age values generally increase churn risk).",
+    "04_SHAP_Explainability_Phase2_shap_feature_importance.png": "A standard bar chart showing the global average impact (magnitude) of each feature on the model's output.",
+    "04_SHAP_Explainability_Phase2_shap_dependence_age.png": "A scatter plot detailing how the 'Age' feature specifically alters predictions across its range, including potential interactions with other variables.",
+    "04_SHAP_Explainability_Phase2_shap_waterfall_index_0.png": "A local waterfall plot explaining the prediction for the customer at index 0, visualizing how individual features pushed the prediction away from the base expected value.",
+    "04_SHAP_Explainability_Phase2_shap_waterfall_index_5.png": "A local waterfall plot explaining the prediction for a different individual customer at test set index 5."
+  },
+  "tables": {
+    "04_SHAP_Explainability_Phase2_SHAP_results": {
+      "LightGBM_Explainability_Run": "Recall: 0.627, F1-Score: 0.614, Precision: 0.603, ROC-AUC: 0.845, Accuracy: 0.840"
+    }
+  },
+  "key_findings": [
+    "SHAP analysis successfully provided transparency to the LightGBM model, identifying 'Age', 'NumOfProducts', and 'Balance' as major global drivers of churn.",
+    "The summary plot confirmed intuitive directional relationships, such as older age and lower activity status contributing to higher churn probabilities.",
+    "Local waterfall plots successfully demonstrated that individual customer predictions are driven by unique combinations of factors, allowing for targeted retention strategies."
+  ],
+  "next_notebook": "Pending",
+  "notes": "The LightGBM model trained in this notebook achieved a Recall of ~62.7%. While slightly lower than the 64.1% from Phase 1B (likely due to different random states or minor parameter defaults), it provides a highly accurate and interpretable foundation for business stakeholders."
+}
